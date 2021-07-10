@@ -12,7 +12,30 @@ public class UIManager : MonoBehaviour
     
     public void Play()
     {
-        SceneManager.LoadScene("Level 1");
+        SceneManager.LoadScene("Play");
+    }
+
+    public void Pause()
+    {
+        if (Time.timeScale == 1)
+        {
+            Time.timeScale = 0;
+            Debug.Log("Paused");
+        }
+    }
+
+    public void Resume()
+    {
+        if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+            Debug.Log("Resume");
+        }
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
     }
 
     public void Quit()

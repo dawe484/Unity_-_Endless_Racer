@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CarController : MonoBehaviour
 {
     public float carSpeed;
-    private const float maxPos = 1.5f;
+    private const float maxPos = 3.55f;
 
     //Vector3 position;
     private Vector3 targetPos;
+    private Quaternion targetRot;
 
     private int desiredLane = 1; //0 - left; 1 - middle; 2 - right
 
@@ -15,6 +17,7 @@ public class CarController : MonoBehaviour
     {
         //position = transform.position;
         targetPos = transform.position;
+        targetRot = transform.rotation;
     }
 
     // Update is called once per frame
@@ -47,6 +50,9 @@ public class CarController : MonoBehaviour
         }
 
         transform.position = targetPos;
+
+        targetRot = Quaternion.Euler (0,0,0);
+        transform.rotation = targetRot;
     }
 
     // Car collision
@@ -55,6 +61,7 @@ public class CarController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy Car"))
         {
             Destroy(gameObject);
+            SceneManager.LoadScene("Game Over");
         }
     }
 }
